@@ -1,1 +1,14 @@
 <h1>タスク一覧</h1>
+
+<% if @tasks.any? %>
+  <% @tasks.each do |task| %>
+    <div>
+      <h3><%= link_to task.title, task_path(task.id) %></h3>
+      <p><strong><%= task.description %></strong></p><br>
+    </div>
+  <% end %>
+<% else %>
+  <h3>タスクがありません</h3>
+<% end %>
+
+<%#= raise %>

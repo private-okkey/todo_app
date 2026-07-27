@@ -19,6 +19,12 @@
         <li>
           <%= link_to "ToDoアプリとは", about_path %>
         </li>
+        <li>
+          <%= link_to "タスク一覧", authenticated_root_path %>
+        </li>
+        <li>
+          <%= link_to "タスク作成", new_task_path %>
+        </li>
       <% else %>
         <li>
           <%= link_to "新規登録", new_user_registration_path %>

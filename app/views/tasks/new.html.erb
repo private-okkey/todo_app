@@ -1,0 +1,26 @@
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<h1>New Task</h1>
+
+<% if @task.errors.any? %>
+  <%= @task.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @task.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @task do |f| %>
+  <p>タイトル</p>
+  <%= f.text_field :title %>
+
+  <p>詳細</p>
+  <%= f.text_area :description %>
+
+  <%= f.submit '投稿' %>
+<% end %>
+
+
