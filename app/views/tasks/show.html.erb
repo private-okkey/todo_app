@@ -1,12 +1,24 @@
 <div>
-  <%= flash[:notice] %>
+  <% if notice.present? %>
+    <p><%= notice %></p>
+  <% end %>
+
+  <% if alert.present? %>
+    <p><%= alert %></p>
+  <% end %>
 </div>
 
 <h3>タスク詳細</h3>
 <div>
   <h3><%= @task.title %></h2>
   <p><strong><%= @task.description %></strong></p>
-  <p>編集</p>
-  <p>削除</p>
+  <%= link_to "編集", edit_task_path(@task.id) %>
+  <%= link_to "削除", 
+    task_path(@task.id),
+    data: {
+      turbo_method: :delete,
+      turbo_confirm: "本当に削除しますか?"
+    }
+  %>
 </div>
 <%#= raise %>

@@ -11,7 +11,7 @@ class TasksController < ApplicationController
       flash[:notice] = "タスクを作成しました"
       redirect_to task_path(@task.id)
     else
-      flash.now[:notice] = "タスク作成に失敗しました"
+      flash.now[:alert] = "タスク作成に失敗しました"
       render :new, status: :unprocessable_entity
     end
   end
@@ -25,12 +25,29 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
   end
 
   def update
+    @task = Task.find(params[:id])
+    if @task.update(task_params)
+      flash[:notice] = "タスク更新成功!"
+      redirect_to task_path(@task.id)
+    else
+      flash.now[:alert] = "タスク更新失敗!"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def destroy
+    @task = Task.find(params[:id])
+    if @task.destroy
+      flash[:notice] = "タスク削除成功!"
+      redirect_to authenticated_root_path
+    else
+      flash.now[:alert] = "タスク削除失敗!"
+      render :show, status: :unprocessable_entity
+    end
   end
 
   private

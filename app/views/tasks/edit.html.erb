@@ -8,8 +8,6 @@
   <% end %>
 </div>
 
-<h1>New Task</h1>
-
 <% if @task.errors.any? %>
   <%= @task.errors.count %>件のエラーが発生しました
   <ul>
@@ -19,14 +17,14 @@
   </ul>
 <% end %>
 
-<%= form_with model: @task do |f| %>
-  <p>タイトル</p>
+<h1>編集画面</h1>
+<%= form_with model: @task, url: task_path(@task.id), method: :patch do |f| %>
+  <h4>タイトル</h4>
   <%= f.text_field :title %>
 
-  <p>詳細</p>
+  <h4>詳細</h4>
   <%= f.text_area :description %>
 
-  <%= f.submit '投稿' %>
+  <%= f.submit '保存' %>
 <% end %>
-
-
+<%#= raise %>

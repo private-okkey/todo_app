@@ -1,3 +1,13 @@
+<div>
+  <% if flash[:notice].present? %>
+    <p><%= flash[:notice] %></p>
+  <% end %>
+
+  <% if flash[:alert].present? %>
+    <p><%= flash[:alert] %></p>
+  <% end %>
+</div>
+
 <h1>タスク一覧</h1>
 
 <% if @tasks.any? %>
